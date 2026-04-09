@@ -1,0 +1,126 @@
+```
+# Arduino build artifacts
+*.hex
+*.elf
+*.bin
+*.map
+*.d
+*.o
+*.a
+*.so
+*.dylib
+*.dll
+*.exe
+*.out
+
+# Build directories
+build/
+dist/
+output/
+
+# Dependencies
+libraries/
+.platformio/
+.pio/
+
+# Temp files
+*.tmp
+*.swp
+*.swo
+*~
+
+# Logs
+*.log
+
+# Environment
+.env
+.env.local
+.env.*
+
+# Editors
+.vscode/
+.idea/
+*.iml
+*.ipr
+*.iws
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Coverage
+coverage/
+htmlcov/
+.coverage
+
+# Python (if mixed project)
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+env/
+venv/
+.venv/
+pip-log.txt
+pip-delete-this-directory.txt
+.tox/
+.coverage*
+nosetests.xml
+coverage.xml
+*.cover
+*.log
+.git/refs/original/
+**/.pytest_cache/
+
+# Node.js (if mixed project)
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+node_modules/
+dist/
+public/dist
+coverage
+.nyc_output
+.grunt
+bower_components
+.sencha
+.tern-project
+.npm
+.npmignore
+.jscs.js
+.eslintcache
+.wakatime-project
+.committe.cache
+.node_repl_history
+*.sublime-workspace
+.vscode/
+!.vscode/extensions.json
+!.vscode/settings.json
+*.vsix
+jspm_packages/
+typings/
+.flowconfig
+.nyc_output/
+istanbul/
+.mocha.opts
+.mocha
+.travis.yml
+appveyor.yml
+circle.yml
+.sauce-labs/
+webdriver-manager/
+.nodemon
+nodemon.json
+.forever
+pm2/
+.nyc_output
+istanbul/
+.repl_history
+.node-inspector-history
+.cache/
+.next/
+.nuxt/
+.vuepress/dist
+```
