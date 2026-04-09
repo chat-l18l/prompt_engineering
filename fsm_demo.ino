@@ -83,25 +83,56 @@ state_t handle_event(state_t current, event_t event) {
 event_t generate_events() {
     static bool last_button_start = HIGH;
     static bool last_button_stop = HIGH;
+    static bool last_button_pause = HIGH;
     
     // Read buttons (GPIO operations happen here)
     bool button_start = digitalRead(2);  // Start button on pin 2
     bool button_stop = digitalRead(3);   // Stop button on pin 3
+    bool button_pause = digitalRead(4);  // Pause/Resume button on pin 4
     
-    // Detect button presses (rising edge)
+    // Detect button presses (falling edge for active-low buttons)
     if (button_start == LOW && last_button_start == HIGH) {
-        last_button_start = LOW;
-        return EVENT_START;
+        delay(50); // Debounce
+        if (digitalRead(2) == LOW) {
+            last_button_start = LOW;
+            return EVENT_START;
+        }
     }
     
     if (button_stop == LOW && last_button_stop == HIGH) {
-        last_button_stop = LOW;
-        return EVENT_STOP;
+        delay(50); // Debounce
+        if (digitalRead(3) == LOW) {
+            last_button_stop = LOW;
+            return EVENT_STOP;
+        }
+    }
+    
+    if (button_pause == LOW && last_button_pause == HIGH) {
+        delay(50); // Debounce
+        if (digitalRead(4) == LOW) {
+            last_button_pause = LOW;
+            // Generate EVENT_PAUSE when in RUNNING state
+            // Generate EVENT_RESUME when in PAUSED state
+            if (current_state == STATE_RUNNING) {
+                return EVENT_PAUSE;
+            } else if (current_state == STATE_PAUSED) {
+                return EVENT_RESUME;
+            }
+        }
+    }
+    
+    // Check for error condition: both START and STOP pressed simultaneously
+    if (button_start == LOW && button_stop == LOW) {
+        delay(50); // Debounce
+        if (digitalRead(2) == LOW && digitalRead(3) == LOW) {
+            return EVENT_ERROR;
+        }
     }
     
     // Update last state
     last_button_start = button_start;
     last_button_stop = button_stop;
+    last_button_pause = button_pause;
     
     return EVENT_NONE;
 }
@@ -136,6 +167,7 @@ void setup() {
     // Setup pins
     pinMode(2, INPUT_PULLUP);  // Start button
     pinMode(3, INPUT_PULLUP);  // Stop button
+    pinMode(4, INPUT_PULLUP);  // Pause/Resume button
     pinMode(13, OUTPUT);       // Status LED
     
     Serial.begin(9600);
