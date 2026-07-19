@@ -1,1 +1,4 @@
 pcbnewtransition==0.5.2
+kicad-python
+protobuf
+pynng
