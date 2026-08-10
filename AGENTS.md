@@ -150,3 +150,23 @@ For Python projects and tools within this repository (such as the KiCad integrat
 - **Dependency Management:** Keep dependencies explicit. For scripts requiring external libraries, always document them via `requirements.txt` or a `pixi` configuration, pinning versions where reproducibility matters.
 - **Testing:** Every independent Python module should be testable. Prefer standard `unittest` or simple `pytest` scripts. Keep mock usage to a minimum; favor real deterministic input/output tests.
 - **Global State:** Do not use mutable global state. Construct and pass necessary contexts explicitly.
+
+## Documentation Conventions (Simplified Technical English)
+
+To ensure that both human readers (like students) and downstream AI agents can parse documentation unambiguously, this repository adopts principles inspired by **Simplified Technical English (ASD-STE100)**.
+
+**These rules apply globally to ALL documentation, including English and Dutch text:**
+
+- **One Word, One Meaning:** Pick one verb for one action and reuse it consistently. Do not rotate synonyms for variety.
+- **One Part of Speech per Word:** Do not use nouns as verbs. E.g., use "Apply oil" instead of "Oil the valve".
+- **Active Voice:** E.g., "The script deletes the file." Avoid passive constructions ("The file is deleted") unless the actor is truly irrelevant.
+- **Simple Tenses Only:** Use simple present or simple past. Avoid perfect tenses ("We received the report" rather than "We have received the report").
+- **One Instruction per Sentence:** Keep steps atomic. Avoid compound instructions connected by "and/then".
+- **Sentence Length:** Keep procedural instructions ≤ 20 words and descriptive sentences ≤ 25 words.
+- **No Noun Clusters:** Restrict noun stacks to a maximum of 3 words. Rewrite longer clusters (e.g., "high pressure fuel pump inlet valve" -> "the inlet valve of the high-pressure fuel pump").
+- **No Ellipsis:** Keep the subject, verb, and article explicit. Do not drop words to save space.
+- **Paragraph Limits:** Keep paragraphs to one topic and ≤ 6 sentences.
+- **Lists for Sequences:** Use numbered or bulleted lists for 3 or more steps or conditions; do not bury sequences in prose.
+- **Domain Terms:** Define necessary technical jargon or project-specific acronyms at least once if they aren't common language.
+
+This discipline applies to `README.md` files, docstrings, system logs, tool descriptions, and inter-agent instructions. The goal is literal, flat clarity. Do not use creative or persuasive copy in technical docs.
