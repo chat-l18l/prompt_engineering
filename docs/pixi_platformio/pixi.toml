@@ -1,0 +1,30 @@
+[project]
+name = "esp32-pixi-example"
+version = "0.1.0"
+description = "Example of using Pixi with PlatformIO for ESP32 and RISC-V projects"
+authors = ["Jules"]
+channels = ["conda-forge"]
+platforms = ["linux-64", "osx-arm64", "osx-64", "win-64"]
+
+[dependencies]
+python = ">=3.10"
+cmake = ">=3.20"
+ninja = ">=1.11"
+# Pixi natively installs global C++ tools like cmake and ninja from conda-forge
+# which makes cross-platform C++ development much easier.
+
+[pypi-dependencies]
+# PlatformIO is essentially a python tool available via PyPI
+platformio = ">=6.1.16"
+
+[tasks]
+# PlatformIO tasks isolated in the pixi environment
+init = "pio project init -b esp32-p4"
+build = "pio run"
+upload = "pio run -t upload"
+monitor = "pio device monitor -b 921600"
+clean = "pio run -t clean"
+
+# Example of a C++ CMake task (if you have native linux components in your repo)
+cmake-config = "cmake -B build -S . -G Ninja"
+cmake-build = "cmake --build build"
